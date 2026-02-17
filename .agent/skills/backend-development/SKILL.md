@@ -32,7 +32,7 @@ export const PostRepo = {
   - `DbContext` for database-only operations
   - `DbContext & { executionCtx: ExecutionContext }` for operations with background tasks
   - `AuthContext` for authenticated operations
-- **Caching**: This is the ONLY layer that calls `CacheService.get()` and `CacheService.bumpVersion()`.
+- **Caching**: This is the ONLY layer that calls `CacheService.get()` and `CacheService.bumpVersion()`. See `caching-strategies` skill for detailed patterns.
 
 ```typescript
 // posts.service.ts
@@ -96,6 +96,8 @@ export const updatePostFn = createServerFn()
 | `"immutable"` | Long-term immutable    | Hashed static assets |
 | `"swr"`       | Stale-while-revalidate | General caching      |
 
+> For detailed caching patterns (KV layer, versioned invalidation, CDN purge), see the **caching-strategies** skill.
+
 ## Schema Definitions (`[name].schema.ts`)
 
 Use `drizzle-zod` to auto-generate base schemas from Drizzle table definitions:
@@ -133,6 +135,8 @@ export const POSTS_CACHE_KEYS = {
     ["posts", "list", version, limit, cursor] as const,
 } as const;
 ```
+
+> For complete caching patterns including versioned invalidation and CDN integration, see the **caching-strategies** skill.
 
 ## TanStack Middlewares (`lib/middlewares.ts`)
 
