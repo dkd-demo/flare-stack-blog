@@ -69,10 +69,10 @@
     "remote": true,
   },
   "queues": {
-    "producers": [{ "binding": "QUEUE", "queue": "blog-queue" }],
+    "producers": [{ "binding": "QUEUE", "queue": "blog-queue-demo" }],
     "consumers": [
       {
-        "queue": "blog-queue",
+        "queue": "blog-queue-demo",
         "max_batch_size": 10,
         "max_batch_timeout": 5,
         "max_retries": 3,
